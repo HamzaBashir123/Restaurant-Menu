@@ -12,8 +12,8 @@ btn.innerHTML = btnempty.join("");
 // Button category Section
 const allBtn = document.querySelectorAll(".filter-btn");
 allBtn.forEach((btnText) => {
-  let newArry = [];
   btnText.addEventListener("click", () => {
+    let newArry = [];
     for (i = 0; i < menu.length; i++) {
       console.log(menu[i].category);
       if (menu[i].category == btnText.innerHTML) {

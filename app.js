@@ -1,45 +1,37 @@
 const btnArr = ["all", "breakfast", "lunch", "shakes", "dinner"];
 
 const btn = document.querySelector(".btn-container");
-// console.log(btn)
 const btnempty = [];
+
 btnArr.forEach((item) => {
-  let string = `<button class="filter-btn"> ${item} </button>`;
+  let string = `<button class="filter-btn">${item}</button>`;
   btnempty.push(string);
 });
 btn.innerHTML = btnempty.join("");
 
 // Button category Section
-
 const allBtn = document.querySelectorAll(".filter-btn");
-// console.log(allBtn[1].innerHTML)
-allBtn.forEach(function (btn1) {
-  //  const btn1 = items
-
-  //  console.log(btn1.innerHTML)
+allBtn.forEach((btnText) => {
   let newArry = [];
-  btn1.addEventListener("click", () => {
-    console.log(btn1.innerHTML);
+  btnText.addEventListener("click", () => {
     for (i = 0; i < menu.length; i++) {
-      console.log(menu[i].category)
-      if (menu[i].category == btn1.innerHTML) {
+      console.log(menu[i].category);
+      if (menu[i].category == btnText.innerHTML) {
         console.log(menu[i]);
-        // newArry.push(menu[i]);
+        newArry.push(menu[i]);
       }
     }
 
-    // displayMenuItems(newArry)
+    displayMenuItems(newArry);
   });
 });
 
 const allBtn1 = document.querySelector(".filter-btn");
 allBtn1.addEventListener("click", () => {
   displayMenuItems(menu);
-  console.log("Chal gaya");
 });
 
 // Content Area
-
 const menu = [
   {
     id: 1,
@@ -122,7 +114,6 @@ const menu = [
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
 ];
-
 const contentItems = document.querySelector(".item-section");
 
 window.addEventListener("DOMContentLoaded", () => {

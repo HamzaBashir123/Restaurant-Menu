@@ -13,23 +13,27 @@ btn.innerHTML = btnempty.join("");
 const allBtn = document.querySelectorAll(".filter-btn");
 allBtn.forEach((btnText) => {
   btnText.addEventListener("click", () => {
-    let newArry = [];
-    for (i = 0; i < menu.length; i++) {
-      console.log(menu[i].category);
-      if (menu[i].category == btnText.innerHTML) {
-        console.log(menu[i]);
-        newArry.push(menu[i]);
+    if (btnText.innerHTML.toLocaleLowerCase() === "all") {
+      displayMenuItems(menu);
+    } else {
+      let newArry = [];
+      for (i = 0; i < menu.length; i++) {
+        console.log(btnText.innerHTML.toLocaleLowerCase());
+        if (menu[i].category == btnText.innerHTML) {
+          console.log(menu[i]);
+          newArry.push(menu[i]);
+        }
       }
-    }
 
-    displayMenuItems(newArry);
+      displayMenuItems(newArry);
+    }
   });
 });
 
-const allBtn1 = document.querySelector(".filter-btn");
-allBtn1.addEventListener("click", () => {
-  displayMenuItems(menu);
-});
+// const allBtn1 = document.querySelector(".filter-btn");
+// allBtn1.addEventListener("click", () => {
+//   displayMenuItems(menu);
+// });
 
 // Content Area
 const menu = [
@@ -128,7 +132,7 @@ function displayMenuItems(menuItems) {
     <div class="col-6">
        <div class="col-12 d-flex justify-content-between contentSection">
         <h5 class="foodName">${item.title}</h5>
-        <span class="price">${item.price}</span>
+        <span class="price">${item.price}$</span>
        </div> 
        <div class="col-12 contentSectionbuttom">
         <p class="para">${item.desc}</p>
@@ -140,3 +144,50 @@ function displayMenuItems(menuItems) {
 
   contentItems.innerHTML = displayMenu.join("");
 }
+
+// POP Windoe work
+
+const foodSubmit = document.querySelector(".foodSubmit");
+const foodReset = document.querySelector(".foodReset");
+const foodDesc = document.querySelector(".foodDesc");
+const optionArea = document.querySelector(".optionArea");
+const foodimg = document.querySelector(".foodimg");
+const foodprice = document.querySelector(".foodprice");
+const foodTitle = document.querySelector(".foodTitle");
+const croosButton = document.querySelector(".croosButton");
+const posmain = document.querySelector(".posmain");
+const add = document.querySelector(".add");
+
+add.addEventListener('click', ()=>{
+  posmain.classList.remove('hidden')
+})
+croosButton.addEventListener('click', ()=>{
+  posmain.classList.add('hidden')
+})
+
+foodReset.addEventListener("click", () => {
+  foodDesc.value = "";
+  foodimg.value = "";
+  foodprice.value = "";
+  foodTitle.value = "";
+});
+
+const itemArray = [];
+
+foodSubmit.addEventListener("click", () => {
+  menu.push({
+    title:foodTitle.value,
+    category:optionArea.value,
+    price:foodprice.value,
+    img:foodimg.value,
+    desc:foodDesc.value
+    
+
+  }
+    
+
+  );
+  posmain.classList.add('hidden')
+  
+  displayMenuItems(menu);
+});
